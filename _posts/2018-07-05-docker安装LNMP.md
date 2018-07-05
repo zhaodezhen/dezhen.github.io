@@ -1,12 +1,7 @@
 ---
 published: true
 ---
----
-title: docker安装LNMP
-key: 20180705
-tags: docker
-published: true
----
+
 ## docker加速
 
 vi /etc/docker/daemon.json
