@@ -24,5 +24,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 内存大于2G
 如果启动时出现 No command specified 可以查看 docker镜像是否制定cmd命令 inspect
+ 
+如需安装，请带点击下方配置文件安装
 
-([配置文件]（https://github.com/zhaodezhen/docker-LNMP))
+ ( [配置文件](https://github.com/zhaodezhen/docker-LNMP/))
