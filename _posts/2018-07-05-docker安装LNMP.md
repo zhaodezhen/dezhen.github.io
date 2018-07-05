@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ---
 title: docker安装LNMP
@@ -31,10 +31,3 @@ sudo chmod +x /usr/local/bin/docker-compose
 如果启动时出现 No command specified 可以查看 docker镜像是否制定cmd命令 inspect
 
 ([配置文件]（https://github.com/zhaodezhen/docker-LNMP))
-
-
-
-
-
-
-
