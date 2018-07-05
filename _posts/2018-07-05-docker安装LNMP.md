@@ -3,16 +3,18 @@ published: true
 ---
 
 ## docker加速
-
+```chart
 vi /etc/docker/daemon.json
 
 {
   "registry-mirrors": ["https://registry.docker-cn.com"]
 }
+```
 
 重启docker服务 service docker restart
 
 ## 安装docker-compose
+<!--more-->
 
 在linux命令端运行下面命令进行下载并进行授权：
 
