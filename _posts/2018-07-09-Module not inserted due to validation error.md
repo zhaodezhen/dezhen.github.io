@@ -41,15 +41,14 @@ return [
 要给 model 填充其所需的用户输入数据，你可以调用 yii\base\Model::validate() 方法验证它们。该方法会返回一个布尔值，指明是否通过验证。若没有通过，你能通过 yii\base\Model::$errors 属性获取相应的报错信息。比如，
 
 ```  		
-	if ($model->validate())
+		if ($model->validate())
 		{
                $model->save(false);//see the false
         } else
         {
                $errors = $model->errors;
         }
-        
-        ```
+         ```
         
 ## 声明规则（Rules）
 要想让 validate() 方法生效，你需要声明与验证模型特性相关的验证规则，在 Model层添加 rules 规则，如果是用 gii 生成的 Model ,它会根据表结构自动生成相应的规则，你只要修改成对应需要的就可以。
