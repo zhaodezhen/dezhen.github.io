@@ -27,7 +27,10 @@ vi /etc/docker/daemon.json
 ## 注意事项
 
 内存大于2G
-如果启动时出现 No command specified 可以查看 docker镜像是否制定cmd命令 inspect
+如果启动时出现 No command specified 可以查看 docker镜像是否制定cmd命令 
+
+inspect
+docker inspect [OPTIONS] NAME|ID [NAME|ID...]
  
 如需安装，请带点击下方配置文件安装
 
