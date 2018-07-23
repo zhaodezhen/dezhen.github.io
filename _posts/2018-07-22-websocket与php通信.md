@@ -1,5 +1,6 @@
 ---
-published: false
+published: true
+key: 20180722
 ---
 最近学习了websocket的握手协议，打开和关闭连接等基础内容。最近用PHP实现了和websocket的双向通信，学习的概念的时候感觉看懂了内容，真正实践过程中还是会遇到各种问题，网上也有一些关于PHP和websocket的实现，但是只有自己亲手写过之后才知道其中的感受。
 websocket协议提供给javascript的API就是特别简洁易用，就不多说了，下面主要说双向通信解码问题；
@@ -59,5 +60,3 @@ public function encode($buffer) {
       }
   }
 ```
-
-
