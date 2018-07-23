@@ -7,6 +7,7 @@ websocket协议提供给javascript的API就是特别简洁易用，就不多说�
 error：
 WebSocket connection to 'ws://127.0.0.1:1999/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
 这个原因是因为双方使用的协议不一致导致的连接失败，服务端接受到的是http Header 头信息，需要服务端来解码	
+<!--more-->
 
 首次与客户端握手
 ```
