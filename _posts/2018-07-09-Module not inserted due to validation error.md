@@ -1,7 +1,7 @@
 ---
 published: true
 key: 20180709
-tags: YII
+tags: PHP
 ---
 ## 问题描述
 项目后台要修改留存规则，然后统计任务就无效了
