@@ -35,13 +35,13 @@ JVM terminated. Exit code=1
 -Xmx1024m
 -jar /usr/local/eclipse//plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar 
 ```
- 第一种： eclipse.ini中内存设置过大的问题，修改了一下，256m改成128m，把512m   改为 256m，即可。  
- 
- 原因：大内存的配置导致的。  
-   <!--more-->       
- 第二种：在eclipse.ini 中，增加了如下两行后，问题解决：                            
- vm                          /usr/local/Java/jdk1.8.0/bin/java   
- 其中java是我的JDK安装路径。同时，完整的eclipse.ini如下  
+第一种： eclipse.ini中内存设置过大的问题，修改了一下，256m改成128m，把512m   改为 256m，即可。  
+<!--more-->  
+原因：大内存的配置导致的。  
+          
+第二种：在eclipse.ini 中，增加了如下两行后，问题解决：                            
+mv  /usr/local/Java/jdk1.8.0/bin/java   
+其中java是我的JDK安装路径。同时，完整的eclipse.ini如下  
 ``` 
 -startup                          plugins/org.eclipse.equinox.launcher_1.0.101.R34x_v20081125.jar                   
 showsplash                         org.eclipse.platform                         
