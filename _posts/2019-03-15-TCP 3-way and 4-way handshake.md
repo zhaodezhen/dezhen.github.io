@@ -14,9 +14,9 @@ TCP是一个面向连接的的协议，所以无论哪一方发送数据之前�
   
   
 此时，客户机和服务器都已收到连接确认。步骤1、2建立一个方向的连接参数（序列号），并确认。步骤2、3为另一个方向建立连接参数（序列号），并确认。通过这些，建立了全双工通信。  
-![TCP 3-way and 4-way handshake]({{site.baseurl}}/_posts/tcp3&4.jpg)  
+![TCP 3-way and 4-way handshake](https://raw.githubusercontent.com/zhaodezhen/dezhen.github.io/master/assets/images/tcp3%264.jpg)  
 ## TCP四次挥手
-TCP的关闭是四次，也就是说需要双方都发送FIN告知对方我要关闭了，并回复FIN-ACK。所以在一方关闭的时候另一方还可以发送数据，我们把这种现象称为TCP半关闭。TCP四次挥手：  
+TCP的关闭是四次，也就是说需要双方都发送FIN告知对方我要关闭了，并回复FIN-ACK。所以在一方关闭的时候另一方还可以发送数据，我们把这种现象称为TCP半关闭。当然主动方发起方也可以选择不接受。TCP四次挥手：  
 <!--more-->   
 1.FIN：主动打开方通知向被动方发送FIN，告知被动方我已经完成数据发送要关闭连接了。自己进入FIN_WAIT1  
 2.ACK：服务器收到对方FIN并回复ACK告知我已收到（这里不像建立连接一样，把ACK和自己的FIN一起发送是因为自己有可能还没完成数据的传输）自己可以继续进行数据传输，对方收到ACK把自己的状态变成FIN_WAIT2并继续等待被动方的FIN  
@@ -25,4 +25,4 @@ TCP的关闭是四次，也就是说需要双方都发送FIN告知对方我要�
 
 此时，主动方进入到TIME_WAIT状态然后等待2MSL(Maximum segment lifetime 它是任何报文段被丢弃前在网络内的最长时间)后进入到CLOSED关闭，被动方收到ACK后进入到CLOSED。因为网络环境是复杂多变的，有可能自己的最后一个ACK丢失导致对方重传FIN。所以主动发起方要等待2MSL来预防对方重传  
 最后附上一副TCP状态机，可以参考TCP/IP illustrated Vol. 1 第18章（强烈推荐英文版，如果英文不好可以买本中文的参考着看）
-![TCP state machine]({{site.baseurl}}/_posts/tcpstatus.png)
+![TCP state machine](https://raw.githubusercontent.com/zhaodezhen/dezhen.github.io/master/assets/images/TCP%20Finite%20State%20Machine.jpg)
