@@ -38,7 +38,7 @@ JVM terminated. Exit code=1
  第一种： eclipse.ini中内存设置过大的问题，修改了一下，256m改成128m，把512m   改为 256m，即可。  
  
  原因：大内存的配置导致的。  
-          
+   <!--more-->       
  第二种：在eclipse.ini 中，增加了如下两行后，问题解决：                            
  vm                          /usr/local/Java/jdk1.8.0/bin/java   
  其中java是我的JDK安装路径。同时，完整的eclipse.ini如下  
