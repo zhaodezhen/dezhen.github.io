@@ -9,7 +9,8 @@ TCP/IP是一种面向连接的、可靠的、基于字节流的传输层通信�
 
 ![tcp header.jpg]({{site.baseurl}}/assets/images/tcp header.jpg)
 - Port  
-每个TCP数据段都包含源端口和目的端口号，用于寻找发送端和接收端的应用进程。这两个值加上IP首部中的源端IP和目的端IP地址唯有时候我们也会把它称为socket四元组（源IP地址、目的IP地址、源端口、目的端口）
+每个TCP数据段都包含源端口和目的端口号，用于寻找发送端和接收端的应用进程。这两个值加上IP首部中的源端IP和目的端IP地址唯有时候我们也会把它称为socket四元组（源IP地址、目的IP地址、源端口、目的端口）  
+<!--more-->   
 - Sequence number  
 序列号用来标识从TCP发送端向TCO接收端发送的数据字节流，它标识在这个报文段中的第一个数据字节。序号是32 bit的无符号数，序号到达232－1后又从0开始。TCP为应用层提供全双工服务。这意味数据能在两个方向上独立地进行传输。因此，连接的每一端必须保持每个方向上的传输数据序号。
 - Acknowledgment number  
@@ -95,3 +96,11 @@ TCP不仅可以可以控制端到端的数据传输，还可以对网络上的�
 当接收端收到一个顺序混乱的数据，它应该立刻回复一个重复的ACK。这个ACK的目的是通知发送端收到了一个顺序紊乱的数据段，以及期望的序列号。发送端收到这个重复的ACK可能有多种原因，可能丢失或者是网络对数据重新排序等。在收到三个重复ACK之后（包含第一次收到的一共四个同样的ACK），TCP不等重传定时器超时就重传看起来已经丢失（可能数据绕路并没有丢失）的数据段。因为这个在网络上并没有超时重传那么恶劣，所以不会进入慢启动，**而进入快速恢复**。快速恢复首先会把ssthresh减半(一般还会四舍五入到数据段的倍数)，然后cwnd=ssthresh+收到重复ACK报文段累计的大小。 
 ![1553401836470.jpg]({{site.baseurl}}/assets/images/1553401836470.jpg)
 这个图上我们可以看出，在三次重复ACK后cwnd并没有进入到慢启动，而是进入到了快速重传。在第二段超时重传时，进入到了慢启动cwnd置1。
+### 总结 
+本来打算以最少的文字去解释TCP，但是并不是很成功。TCP发展至今已经有几十年了，其中的技术点都可以出好几本书了。你可以把它当个索引，快速浏览一遍。下面我列一下在写这篇文章时参考的文档，都很不错，值得一读。
+[TCP Congestion Control](https://www.net.t-labs.tu-berlin.de/teaching/computer_networking/03.07.htm)  
+[Transmission Control Protocol](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)  
+[TCP Sliding Window](http://www.cs.uni.edu/~diesburg/courses/cs3470_fa14/sessions/s29/s29.pdf)  
+[TCP/IP Guide](http://www.tcpipguide.com/free/t_TCPSlidingWindowDataTransferandAcknowledgementMech-5.htm)  
+[rfc 5681](https://tools.ietf.org/html/rfc5681#section-9.1)  
+
