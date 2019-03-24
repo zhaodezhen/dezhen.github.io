@@ -97,7 +97,7 @@ TCP不仅可以可以控制端到端的数据传输，还可以对网络上的�
 ![1553401836470.jpg]({{site.baseurl}}/assets/images/1553401836470.jpg)
 这个图上我们可以看出，在三次重复ACK后cwnd并没有进入到慢启动，而是进入到了快速重传。在第二段超时重传时，进入到了慢启动cwnd置1。
 ### 总结 
-本来打算以最少的文字去解释TCP，但是并不是很成功。TCP发展至今已经有几十年了，其中的技术点都可以出好几本书了。你可以把它当个索引，快速浏览一遍。下面我列一下在写这篇文章时参考的文档，都很不错，值得一读。
+本来打算以最少的文字去解释TCP，但是并不是很成功。TCP发展至今已经有几十年了，其中的技术点都可以出好几本书了。你可以把它当个索引，快速浏览一遍。下面我列一下在写这篇文章时参考的文档，都很不错，值得一读。  
 [TCP Congestion Control](https://www.net.t-labs.tu-berlin.de/teaching/computer_networking/03.07.htm)  
 [Transmission Control Protocol](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)  
 [TCP Sliding Window](http://www.cs.uni.edu/~diesburg/courses/cs3470_fa14/sessions/s29/s29.pdf)  
