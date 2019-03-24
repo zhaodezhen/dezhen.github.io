@@ -7,7 +7,7 @@ tags: TCP/IP
 TCP/IP是一种面向连接的、可靠的、基于字节流的传输层通信协议，它会保证数据不丢包、不乱序。TCP全名是Transmission Control Protocol，它是位于网络OSI模型中的第四层(Transport layer)。
 ### TCP 首部
 
-![tcp header.jpg](./tcp header.jpg)
+![tcp header.jpg]({{site.baseurl}}/assets/images/tcp header.jpg)
 - Port  
 每个TCP数据段都包含源端口和目的端口号，用于寻找发送端和接收端的应用进程。这两个值加上IP首部中的源端IP和目的端IP地址唯有时候我们也会把它称为socket四元组（源IP地址、目的IP地址、源端口、目的端口）
 - Sequence number  
@@ -51,12 +51,12 @@ TCP 在收到连续重复ACK后会重传最后顺序确认包的下一个，这�
 ### TCP 滑动窗口  
 - 滑动窗口  
 TCP在双方数据传输的过程中，都会维护一个窗口，它代表了我还可以接受的数据的大小。如果接收方窗口大小为0，发送方就会停止发送。之所以叫滑动窗口（Sliding Window）是因为它是动态可变的，不是固定的（张开、合拢、收缩）。它保证了数据的可靠传递、它确保数据按顺序传递、并且它强制发送者之间的流量控制。
-![window]({{site.baseurl}}/_posts/window.jpg)  
+![window]({{site.baseurl}}/assets/images/window.jpg)  
 上图中我们可以看到：  
 发送端的LastByteAcked指向了接收端最后一次顺序ACK的位置，LastByteSent指向了发送出的数据，但是还没有收到确认ACK。  
 接收端的NextByteExpected指向了已经收到的最后一个连续数据，LastByteAcked指向了接收到的最后一个数据，其中的空白代表还未收到的数据。  
 下面看一张滑动窗口的示意图：  
-![tcpswpointers.png]({{site.baseurl}}/_posts/tcpswpointers.png)
+![tcpswpointers.png]({{site.baseurl}}/assets/images/tcpswpointers.png)
 SND.UNA：已发送但尚未确认的数据的第一个字节的序列号。 这标志着传输类别＃2的第一个字节; 所有先前的序列号都是指传输类别＃1中的字节。  
 SND.NXT：要发送到另一个设备（在这种情况下是服务器）的下一个数据字节的序列号。 这标志着传输类别＃3的第一个字节。     
 SND.WND：发送窗口的大小。 回想一下，窗口指定任何设备在任何时候都可能具有“未完成”（ 未确认 ）的总字节数。 因此，添加第一个未确认字节（ SND.UNA ）和发送窗口（SND.WND ）的序列号标记发送类别＃4的第一个字节。
@@ -69,7 +69,7 @@ SND.WND：发送窗口的大小
 #4 表示不能发送的数据，接收方不能接收的数据。
 
 下面看一张TCP窗口滑动的示意图：
-![tcpswexampleserver.png]({{site.baseurl}}/_posts/tcpswexampleserver.png)  
+![tcpswexampleserver.png]({{site.baseurl}}/assets/images/tcpswexampleserver.png)  
 - 糊涂窗口  
 我们看到了TCP通过让接收方指明窗口来进行流量控制，这将有效的组织发送方放松数据，直到窗口变为非0为止。但是其中会遇到一个问题，就是接收方发送的的的窗口更新数据丢失，这样会让发送方进入到无限等待状态，因为他要等待窗口更新为非0。为了解决这个问题TCP采用了坚持定时器（persist timer）去探测窗口更新。 
 这样又会导致一种被称为“糊涂窗口综合症SWS (Silly Window Syndrome）”的状况。如果发生这种情况，则少量的数据将通过连接进行交换，而不是满长度的报文段。   
@@ -88,10 +88,10 @@ TCP不仅可以可以控制端到端的数据传输，还可以对网络上的�
 在不清楚环境的情况下向网络传送数据，要求TCP缓慢地探测网络以确定可用流量，避免突然传送大量数据而使网络拥塞。在开始慢启动时cwnd为1，每收到一个用于确认新数据的ACK至多增加SMSS（SENDER MAXIMUM SEGMENT SIZE）字节。
 慢启动算法在cwnd<ssthresh时使用，拥塞避免算法在cwnd>ssthresh时使用。当cwnd和ssthresh相等时，发送端既可以使用慢启动也可以使用拥塞避免。 
 当拥塞发生时，ssthresh被设置为当前窗口大小的一半（cwnd和接收方通告窗口大小的最小值，但最少为2个报文段）。如果是超时重传，cwnd被设置为1个报文段（这就是慢启动，其实慢启动也不慢，它是指数性增长，只是它的起始比较低）当达到ssthresh时，进入拥塞避免算法（拥塞避免是线性增长）。
-![congwin.jpg]({{site.baseurl}}/_posts/congwin.jpg)
+![congwin.jpg]({{site.baseurl}}/assets/images/congwin.jpg)
  
 在该图中我们可以清楚的看到，ssthresh最初等于8 MSS 。 拥塞窗口在慢启动期间以指数方式快速上升并在第三次传输时达到ssthresh。 然后，拥塞窗口线性地爬升，直到发生丢失（超时），就在发送7之后。当发生丢失时，拥塞窗口是12 MSS 。 然后将ssthresh设置为6 MSS并且将cwnd设置为1，并且该过程继续。
 - 快速重传和快速恢复   
 当接收端收到一个顺序混乱的数据，它应该立刻回复一个重复的ACK。这个ACK的目的是通知发送端收到了一个顺序紊乱的数据段，以及期望的序列号。发送端收到这个重复的ACK可能有多种原因，可能丢失或者是网络对数据重新排序等。在收到三个重复ACK之后（包含第一次收到的一共四个同样的ACK），TCP不等重传定时器超时就重传看起来已经丢失（可能数据绕路并没有丢失）的数据段。因为这个在网络上并没有超时重传那么恶劣，所以不会进入慢启动，**而进入快速恢复**。快速恢复首先会把ssthresh减半(一般还会四舍五入到数据段的倍数)，然后cwnd=ssthresh+收到重复ACK报文段累计的大小。 
-![1553401836470.jpg]({{site.baseurl}}/_posts/1553401836470.jpg)
+![1553401836470.jpg]({{site.baseurl}}/assets/images/1553401836470.jpg)
 这个图上我们可以看出，在三次重复ACK后cwnd并没有进入到慢启动，而是进入到了快速重传。在第二段超时重传时，进入到了慢启动cwnd置1。
