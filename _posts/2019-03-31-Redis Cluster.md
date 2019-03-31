@@ -1,5 +1,7 @@
 ---
-published: false
+published: true
+key: 20190331
+tags: REDIS
 ---
 ### 前言
 
@@ -47,5 +49,3 @@ Redis 分布式锁
 在获取锁的时候，使用[SETNX](https://redis.io/commands/setnx)加锁，并使用[EXPIRE](https://redis.io/commands/expire)命令为锁添加一个超时时间，超过该事件自动释放锁，锁的value值会随机生成一个UUID，释放锁的时候，通过UUID判断是不是该锁，若是该锁，则释放。如果在执行EXPIRE之前服务挂掉了那么这个锁就永远得不到释放了。可以用[SET](https://redis.io/commands/set)命令同时设置SETNX和EXPIRE
 - 并发竞争问题  
 如果不要求执行顺序则让大家去抢锁，抢到了就进行操作。如果需要顺序，可以考虑设置一个时间戳抢到的节点判断当前时间戳是否属于自己，若属于自己在进行操作。
-
-
