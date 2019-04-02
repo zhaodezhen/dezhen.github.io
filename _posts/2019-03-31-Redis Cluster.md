@@ -16,12 +16,12 @@ Redis因为具有丰富的数据结构和超高额性能以及简单的协议，
 为了解决上面的问题，Redis的集群方案就显得比较重要了。使用Redis集群通常有三个途径；  
 - 官方提供的 Redis Cluster
 - 通过Proxy分片
-- 客户端分片(Smart Client)
+- 客户端分片(Smart Client)  
+
 <!--more-->
-本文主要介绍一下官方提供的 Redis Cluster，Redis Cluster 是在Redis 3.0开始支持的，3.0主要是更新了多机方面的功能，在5.0之前Redis Cluster 主要是采用 Redis提供的 redis-trib.rb（Ruby实现的脚本,需要安装相应的环境) Redis Cluster并没有使用一致的哈希，而是使用不同形式的分片，其中每个键在概念上都是我们称之为哈希槽的一部分 。
+本文主要介绍一下官方提供的 Redis Cluster，Redis Cluster 是在Redis 3.0开始支持的，3.0主要是更新了多机方面的功能，在5.0之前Redis Cluster 主要是采用 Redis提供的 redis-trib.rb（Ruby实现的脚本,需要安装相应的依赖环境）这个管理工具。5.0版本开始支持 --cluster 参数来进行管理。
 
 ### Redis Cluster 数据分片
-Redis集群中有16384个哈希槽，为了计算给定密钥的哈希槽，我们只需采用密钥模数16384的CRC16，需要安装相应的依赖环境）这个管理工具。5.0版本开始支持 --cluster 参数来进行管理，不用使用redis-trib.rb来管理了。
 
 Redis Cluster 并没有使用一致性hash，而是引用了一个叫**哈希槽**的概念。
 Redis Cluster 中有16384个哈希槽，每个key通过CRC16校验后对16384取模来决定放置哪个槽。集群的每个节点分配一部分的哈希槽，这样有一点很方便就是在增加和移除的时候，只需要分配相应的哈希槽就可以了。  
