@@ -1,6 +1,6 @@
 ---
 published: true
-key: 20190331
+key: redisCluster
 tags: REDIS
 ---
 ### 前言
