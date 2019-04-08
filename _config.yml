@@ -106,23 +106,21 @@ sources: # bootcdn (default), unpkg
 ## => Comments
 ##############################
 comments:
-  provider: valine # false (default), "disqus", "gitalk", "custom"
-  valine:
-    app_id  : PYvRr8D3mzqHYSEARdBsJbaE-gzGzoHsz
-    app_key : W4PwKo0QCb8hB1GnK4UxJa0R
-  ## Disqus
-  # disqus:
-  #   shortname: # the Disqus shortname for the site
+  provider: addtoany # false (default), "disqus", "gitalk", "custom"
 
-  # ## Gitalk
-  # # please refer to https://github.com/gitalk/gitalk for more info.
-  # gitalk:
-  #   clientID    : # GitHub Application Client ID
-  #   clientSecret: # GitHub Application Client Secret
-  #   repository  : # GitHub repo
-  #   owner       : # GitHub repo owner
-  #   admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-  #     # - your GitHub Id
+  ## Disqus
+  disqus:
+    shortname: # the Disqus shortname for the site
+
+  ## Gitalk
+  # please refer to https://github.com/gitalk/gitalk for more info.
+  gitalk:
+    clientID    : # GitHub Application Client ID
+    clientSecret: # GitHub Application Client Secret
+    repository  : # GitHub repo
+    owner       : # GitHub repo owner
+    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+      # - your GitHub Id
 
 
 ## => Pageview
