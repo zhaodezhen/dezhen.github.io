@@ -106,8 +106,10 @@ sources: # bootcdn (default), unpkg
 ## => Comments
 ##############################
 comments:
-  provider: addtoany # false (default), "disqus", "gitalk", "custom"
-
+  provider: valine # false (default), "disqus", "gitalk", "custom"
+  valine:
+    app_id  : "PYvRr8D3mzqHYSEARdBsJbaE-gzGzoHsz"
+    app_key : "W4PwKo0QCb8hB1GnK4UxJa0R"
   ## Disqus
   disqus:
     shortname: # the Disqus shortname for the site
