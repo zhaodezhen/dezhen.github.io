@@ -19,7 +19,7 @@
 text_skin: forest # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 url     : # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
-title   : 风轻云淡
+title   : 今晚打老虎
 description: > # this means to ignore newlines until "Language & timezone"
   You never know what you don't know.
 
